@@ -1,0 +1,194 @@
+[{
+  "api_version": "3.1",
+  "metadata": {
+    "kind": "action_rule",
+    "spec_version": 0,
+    "owner_reference": {
+      "kind": "user",
+      "uuid": "00000000-0000-0000-0000-000000000000",
+      "name": "admin"
+    }
+  },
+  "spec": {
+    "resources": {
+      "name": "Generate Service Ticket for Constrained VM",
+      "is_enabled": true,
+      "rule_type": "XPLAY",
+      "description": "",
+      "execution_user_reference": {
+        "kind": "user",
+        "name": "admin",
+        "uuid": "00000000-0000-0000-0000-000000000000"
+      },
+      "trigger_list": [
+        {
+          "instance_uuid": "df978d40-e88f-4155-8276-3569ffdd49bb",
+          "action_trigger_type_reference": {
+            "kind": "action_trigger_type",
+            "name": "alert_trigger"
+          },
+          "input_parameter_values": {
+            "category_filter_list": "[]",
+            "alert_uid": "A120241",
+            "severity": "[\"info\"]",
+            "source_entity_info_list": "[]"
+          },
+          "display_name": "Alert",
+          "description": ""
+        }
+      ],
+      "action_list": [
+        {
+          "instance_uuid": "1ec363a6-ccdc-47dd-a5be-23a2e458813a",
+          "action_type_reference": {
+            "kind": "action_type",
+            "name": "rest_api_action"
+          },
+          "display_name": "REST API",
+          "description": "Generate Service Ticket",
+          "should_continue_on_failure": false,
+          "max_retries": 2,
+          "input_parameter_values": {
+            "url": "http://XXXXXX/generate_ticket/",
+            "headers": "Content-Type:application/json;charset=utf-8",
+            "method": "POST",
+            "request_body": "{\"vm_name\":\"{{trigger[0].source_entity_info.name}}\",\"vm_id\":\"{{trigger[0].source_entity_info.uuid}}\",\"alert_name\":\"{{trigger[0].alert_entity_info.name}}\",\"alert_id\":\"{{trigger[0].alert_entity_info.uuid}}\", \"webhook_id\":\"YYYYYY\",\"string1\":\"Request 1 GiB Memory increase.\"}"
+          },
+          "child_action_uuids": []
+        }
+      ],
+      "should_validate": true
+    }
+  }
+},
+{
+  "api_version": "3.1",
+  "metadata": {
+    "kind": "action_rule",
+    "spec_version": 0,
+    "owner_reference": {
+      "kind": "user",
+      "uuid": "00000000-0000-0000-0000-000000000000",
+      "name": "admin"
+    }
+  },
+  "spec": {
+    "resources": {
+      "name": "Add Memory via Webhook",
+      "is_enabled": true,
+      "rule_type": "XPLAY",
+      "description": "",
+      "execution_user_reference": {
+        "kind": "user",
+        "name": "admin",
+        "uuid": "00000000-0000-0000-0000-000000000000"
+      },
+      "trigger_list": [
+        {
+          "action_trigger_type_reference": {
+            "kind": "action_trigger_type",
+            "name": "incoming_webhook_trigger"
+          },
+          "input_parameter_values": {},
+          "display_name": "Webhook"
+        }
+      ],
+      "action_list": [
+        {
+          "instance_uuid": "4a9666f0-d885-4967-94d9-dc5735bb67cb",
+          "action_type_reference": {
+            "kind": "action_type",
+            "name": "parse_action"
+          },
+          "display_name": "String Parser",
+          "description": "Check Approval Status",
+          "should_continue_on_failure": false,
+          "max_retries": 2,
+          "input_parameter_values": {
+            "json_path": "$.status",
+            "string_to_parse": "{{trigger[0].string5}}",
+            "format": "json"
+          },
+          "child_action_uuids": [
+            "3e40b816-17be-49f2-a0f1-cb70421f9be8"
+          ]
+        },
+        {
+          "instance_uuid": "3e40b816-17be-49f2-a0f1-cb70421f9be8",
+          "action_type_reference": {
+            "kind": "action_type",
+            "name": "branch_action"
+          },
+          "display_name": "Branch",
+          "description": "Status is Approved",
+          "should_continue_on_failure": false,
+          "max_retries": 2,
+          "input_parameter_values": {
+            "values": "[\"{{action[0].parsed_data}}\",\"approved\"]",
+            "condition": "[\"if\"]",
+            "branch": "[\"1547218c-2d5f-4207-8581-eb6af774a562\"]",
+            "conditional_expression": "[\"{0}=={1}\"]"
+          },
+          "child_action_uuids": [
+            "1547218c-2d5f-4207-8581-eb6af774a562"
+          ]
+        },
+        {
+          "instance_uuid": "1547218c-2d5f-4207-8581-eb6af774a562",
+          "action_type_reference": {
+            "kind": "action_type",
+            "name": "vm_add_memory_action"
+          },
+          "display_name": "VM Add Memory",
+          "description": "",
+          "should_continue_on_failure": false,
+          "max_retries": 2,
+          "input_parameter_values": {
+            "entity_info": "{{trigger[0].entity1}}",
+            "max_memory_size_gib": "20",
+            "memory_size_gib": "1"
+          },
+          "child_action_uuids": [
+            "27de76ce-ca03-4ccc-a0ab-ebae2ffa204c"
+          ]
+        },
+        {
+          "instance_uuid": "27de76ce-ca03-4ccc-a0ab-ebae2ffa204c",
+          "action_type_reference": {
+            "kind": "action_type",
+            "name": "resolve_alert"
+          },
+          "display_name": "Resolve Alert",
+          "description": "",
+          "should_continue_on_failure": false,
+          "max_retries": 2,
+          "input_parameter_values": {
+            "alert_entity": "{{trigger[0].entity2}}"
+          },
+          "child_action_uuids": [
+            "a3255dd8-47ea-47aa-9e59-7d65a9741dd6"
+          ]
+        },
+        {
+          "instance_uuid": "a3255dd8-47ea-47aa-9e59-7d65a9741dd6",
+          "action_type_reference": {
+            "kind": "action_type",
+            "name": "rest_api_action"
+          },
+          "display_name": "REST API",
+          "description": "Resolve Service Ticket",
+          "should_continue_on_failure": false,
+          "max_retries": 2,
+          "input_parameter_values": {
+            "headers": "Content-Type:application/json;charset=utf-8",
+            "method": "PUT",
+            "url": "http://XXXXXX/resolve_ticket/",
+            "request_body": "{\"incident_id\":\"{{trigger[0].entity2.uuid}}\"}"
+          },
+          "child_action_uuids": []
+        }
+      ],
+      "should_validate": true
+    }
+  }
+}]

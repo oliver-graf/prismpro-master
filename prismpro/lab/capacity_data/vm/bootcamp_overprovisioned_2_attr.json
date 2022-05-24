@@ -1,0 +1,11 @@
+{
+  "cluster_name": "Prism-Pro-Cluster",
+  "cluster": "00057d50-00df-b390-0000-00000000eafd",
+  "vm_name": "bootcamp_overprovisioned_2",
+  "hypervisor_type": "kKvm",
+  "memory_size_bytes": "2147483648",
+  "node": "node_4d",
+  "node_name": "node_4d",
+  "vm_type": "kGuestVM",
+  "power_state": "on"
+}

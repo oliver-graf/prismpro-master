@@ -1,0 +1,34 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": [
+            "last 2 versions",
+            "Edge >= 12",
+            "Explorer >= 10"
+          ]
+        }
+      }
+    ]
+  ],
+  "env": {
+    "test": {
+      "plugins": [
+        "dynamic-import-node"
+      ]
+    }
+  },
+  "plugins": [
+    "add-module-exports",
+    "babel-plugin-transform-class-properties",
+    "es6-promise",
+    "prism-less-vars-to-js",
+    "transform-object-assign",
+    "babel-plugin-syntax-dynamic-import",
+    "babel-plugin-transform-object-rest-spread",
+    "babel-plugin-lodash",
+    "babel-plugin-transform-react-jsx"
+  ]
+}

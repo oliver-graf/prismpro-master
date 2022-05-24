@@ -1,0 +1,61 @@
+[{
+  "alert_id":"A120240",
+  "severity": "kInfo",
+  "alert_message": "Memory usage was below the minimum threshold for 99.5% of the time during the last 21 days."
+},
+{
+  "alert_id":"A120241",
+  "severity": "kInfo",
+  "alert_message": "Max hourly average memory usage (92.52%) exceeded the threshold (90%) during the last 21 days."
+},
+{
+  "alert_id":"A120242",
+  "severity": "kInfo",
+  "alert_message": "CPU usage was below the minimum threshold for 99.5% of the time during the last 21 days."
+},
+{
+  "alert_id":"A120243",
+  "severity": "kInfo",
+  "alert_message": "Max hourly average CPU usage (92.52%) exceeded the threshold (90%) during the last 21 days."
+},
+{
+  "alert_id":"A120245",
+  "severity": "kInfo",
+  "alert_message": "This VM’s IO usage is affecting 1 other VMs for 240 minutes in the last 24 hours."
+},
+{
+  "alert_id":"A120322",
+  "severity": "kInfo",
+  "alert_message": "Memory usage was below the minimum threshold for 99.5% of the time during the last 21 days."
+},
+{
+  "alert_id":"A120323",
+  "severity": "kInfo",
+  "alert_message": "Max hourly average memory usage (92.52%) exceeded the threshold (90%) during the last 21 days."
+},
+{
+  "alert_id":"A120324",
+  "severity": "kInfo",
+  "alert_message": "CPU usage was below the minimum threshold for 99.5% of the time during the last 21 days."
+},
+{
+  "alert_id":"A120325",
+  "severity": "kInfo",
+  "alert_message": "Max hourly average CPU usage (92.52%) exceeded the threshold (90%) during the last 21 days."
+},
+{
+  "alert_id":"A120327",
+  "severity": "kInfo",
+  "alert_message": "This VM’s IO usage is affecting 1 other VMs for 240 minutes in the last 24 hours."
+},
+{
+  "alert_id":"A106472",
+  "severity": "kCritical"
+},
+{
+  "alert_id":"A120094",
+  "severity": "kCritical",
+  "cluster_name": "Prism-Pro-Cluster",
+  "cluster_uuid": "00057d50-00df-b390-0000-00000000eafd",
+  "data_int": "93"
+}]

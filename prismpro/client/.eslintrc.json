@@ -1,0 +1,11 @@
+{
+  "extends": "prism",
+  "rules": {
+    "import/no-unassigned-import": ["error", {
+      "allow": [
+        "**/*.css",
+        "**/*.less"
+      ]
+    }]
+  }
+}

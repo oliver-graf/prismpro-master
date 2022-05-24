@@ -19,7 +19,7 @@
 import os
 import sys
 import sphinx_rtd_theme
-import sphinx_fontawesome
+#import sphinx_fontawesome
 #sys.path.insert(0, os.path.abspath('..'))
 
 

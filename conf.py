@@ -88,15 +88,15 @@ todo_include_todos = True
 # a list of builtin themes.
 #
 #html_theme = "sphinx_rtd_theme"
-html_theme = 'bootstrap'
-html_theme_path = sphinx_rtd_theme.get_html_theme_path()
+#html_theme = 'bootstrap'
+#html_theme_path = sphinx_rtd_theme.get_html_theme_path()
 
 # (Optional) Logo. Should be small enough to fit the navbar (ideally 24x24).
 # Path should be relative to the ``_static`` files directory.
 
 html_logo = "NutanixWorkshops.svg"
 
-html_favicon = "favicon.ico"
+#html_favicon = "favicon.ico"
 
 html_title = ""
 
